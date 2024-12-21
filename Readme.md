@@ -1,20 +1,25 @@
 ## Introduction to the Blog Project API
 
-The Blog Project API is built using **Node.js**, **TypeScript**, and **Express.js** for the backend, with **MongoDB** and **Mongoose** for data management. It allows users to create, manage, and interact with blog posts, while supporting role-based access for Admin and User roles.
+The Blog Project API is built using **Node.js**, **TypeScript**, and **Express.js** for the backend, with **MongoDB**
+and **Mongoose** for data management. It allows users to create, manage, and interact with blog posts, while supporting
+role-based access for Admin and User roles.
 
 #### Highlighted Features:
 
 1. **User Management**
-  - Users can register, log in, and manage their blogs.
-  - Admins have the ability to manage users (block or delete).
+
+- Users can register, log in, and manage their blogs.
+- Admins have the ability to manage users (block or delete).
 
 2. **Blog Management**
-  - Create, update, delete, and retrieve blogs.
-  - Public API for blog access with search, sort, and filter functionalities.
+
+- Create, update, delete, and retrieve blogs.
+- Public API for blog access with search, sort, and filter functionalities.
 
 3. **Authentication & Authorization**
-  - Secure login using JWT tokens.
-  - Role-based access control (Admin/User).
+
+- Secure login using JWT tokens.
+- Role-based access control (Admin/User).
 
 ---
 
@@ -30,7 +35,7 @@ The Blog Project API is built using **Node.js**, **TypeScript**, and **Express.j
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/Blog-Project.git
+   git clone https://github.com/sazzad4677/Blog-Project.git
    cd Blog-Project
    ```
 
@@ -44,9 +49,15 @@ The Blog Project API is built using **Node.js**, **TypeScript**, and **Express.j
    Create a `.env` file with the following configurations:
 
    ```plaintext
+   NODE_ENV=DEVELOPMENT
    PORT=5000
-   MONGO_URI=<your-mongodb-uri>
-   JWT_SECRET=<your-jwt-secret>
+   DATABASE_URL=<mongodb uri>
+   BCRYPT_SALT_ROUNDS=<Bcrypt salt round>
+   TOKEN_SECRET=<Jwt token secret>
+   REFRESH_TOKEN_SECRET=<Jwt Refresh token secret>
+   TOKEN_EXPIRES_IN=<Jwt token expire time>
+   REFRESH_TOKEN_EXPIRES_IN=<Refresh token expire time>
+
    ```
 
 4. **Run the Application**
@@ -59,7 +70,7 @@ The Blog Project API is built using **Node.js**, **TypeScript**, and **Express.j
    For production:
 
    ```bash
-   yarn start-prod
+    yarn start-prod
    ```
 
 ---
@@ -68,27 +79,27 @@ The Blog Project API is built using **Node.js**, **TypeScript**, and **Express.j
 
 #### Authentication
 
-| Method | Endpoint           | Description                            |
-| ------ | ------------------ | -------------------------------------- |
-| POST   | `/api/auth/register` | Register a new user                    |
-| POST   | `/api/auth/login`    | Login a user and receive a JWT token   |
+| Method | Endpoint             | Description                          |
+|--------|----------------------|--------------------------------------|
+| POST   | `/api/auth/register` | Register a new user                  |
+| POST   | `/api/auth/login`    | Login a user and receive a JWT token |
 
 #### Blog Management
 
-| Method | Endpoint           | Description                               |
-| ------ | ------------------ | ----------------------------------------- |
-| POST   | `/api/blogs`        | Create a new blog post                   |
-| PATCH  | `/api/blogs/:id`    | Update an existing blog post             |
-| DELETE | `/api/blogs/:id`    | Delete a specific blog post              |
-| GET    | `/api/blogs`        | Retrieve all blog posts                  |
-| GET    | `/api/blogs/:id`    | Get details of a specific blog post      |
+| Method | Endpoint         | Description                         |
+|--------|------------------|-------------------------------------|
+| POST   | `/api/blogs`     | Create a new blog post              |
+| PATCH  | `/api/blogs/:id` | Update an existing blog post        |
+| DELETE | `/api/blogs/:id` | Delete a specific blog post         |
+| GET    | `/api/blogs`     | Retrieve all blog posts             |
+| GET    | `/api/blogs/:id` | Get details of a specific blog post |
 
 #### Admin Actions
 
-| Method | Endpoint               | Description                              |
-| ------ | ---------------------- | ---------------------------------------- |
-| PATCH  | `/api/admin/users/:userId/block` | Block a user                          |
-| DELETE | `/api/admin/blogs/:id` | Delete any blog post by its ID           |
+| Method | Endpoint                         | Description                    |
+|--------|----------------------------------|--------------------------------|
+| PATCH  | `/api/admin/users/:userId/block` | Block a user                   |
+| DELETE | `/api/admin/blogs/:id`           | Delete any blog post by its ID |
 
 ---
 
