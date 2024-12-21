@@ -19,6 +19,18 @@ const registerUserSchema = z.object({
   isBlocked: z.boolean().default(false),
 });
 
+const loginUserSchema = z.object({
+  email: z
+    .string({
+      required_error: 'Email is required',
+    })
+    .email('Invalid email format'),
+  password: z.string({
+    required_error: 'Password is required',
+  }),
+});
+
 export const AuthValidation = {
   registerUserSchema,
+  loginUserSchema
 };

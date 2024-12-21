@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import config from '../../config';
 import { UserRole } from './users.constant';
 
-const userSchema: Schema<IUser, UserModel> = new Schema<IUser>(
+const userSchema = new Schema<IUser, UserModel>(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -18,13 +18,6 @@ const userSchema: Schema<IUser, UserModel> = new Schema<IUser>(
   },
 );
 
-userSchema.statics.isUserExist = async function (
-  email: string,
-): Promise<IUser | null> {
-  const user = await this.findOne({ email }).select('+password');
-  return user;
-};
-
 userSchema.pre('save', async function (next) {
   const user = this;
   user.password = await bcrypt.hash(
@@ -34,5 +27,18 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.statics.isUserExist = async function (
+  email: string,
+): Promise<IUser | null> {
+  const user = await this.findOne({ email }).select('+password');
+  return user;
+};
+
+userSchema.statics.isPasswordMatched = async function (
+  password: string,
+  hash: string,
+): Promise<boolean> {
+  return await bcrypt.compare(password, hash);
+};
 
 export const User = model<IUser, UserModel>('User', userSchema);

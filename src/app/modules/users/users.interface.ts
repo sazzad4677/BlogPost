@@ -10,4 +10,5 @@ export interface IUser {
 
 export interface UserModel extends Model<IUser> {
   isUserExist(email: string): IUser | null;
+  isPasswordMatched(password: string, hash: string): boolean;
 }
