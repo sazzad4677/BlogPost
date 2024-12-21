@@ -9,5 +9,5 @@ export interface IUser {
 }
 
 export interface UserModel extends Model<IUser> {
-  isUserExist(): IUser | null;
+  isUserExist(email: string): IUser | null;
 }

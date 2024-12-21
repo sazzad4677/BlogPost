@@ -1,9 +1,10 @@
-import { IUser } from './users.interface';
+import { User } from './users.model';
 
-const createUser = async(payload: IUser) => {
-  // const result = await
-}
+const getAllUser = async () => {
+  const result = await User.find({});
+  return result;
+};
 
-export const UsersService = {
-  createUser
-}
+export const UserService = {
+  getAllUser,
+};
