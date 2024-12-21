@@ -4,7 +4,7 @@ import { BlogService } from './blog.service';
 import { StatusCodes } from 'http-status-codes';
 
 const getBlog =catchAsync(async (req, res, next) => {
-  const result = await BlogService.getBlogs();
+  const result = await BlogService.getBlogs(req.query);
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     message: 'Blog Successfully retrieved',

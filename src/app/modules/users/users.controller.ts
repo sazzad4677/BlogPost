@@ -13,6 +13,8 @@ const getAllUser = catchAsync(async (req, res, next) => {
   });
 });
 
+
+
 export const UserController = {
   getAllUser,
 };

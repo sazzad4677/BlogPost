@@ -3,13 +3,15 @@ import { IBlog } from './blog.interface';
 import { JwtPayload } from 'jsonwebtoken';
 import { StatusCodes } from 'http-status-codes';
 import AppError from '../../errors/AppError';
+import QueryBuilder from '../../QueryBuilder';
 
-const getBlogs = async () => {
-  const blogs = await Blog.find().populate({
+const getBlogs = async (query: Record<string, unknown>) => {
+  const blogQuery =  new QueryBuilder(Blog.find().select("-isPublished").populate({
     path: 'author',
     select: 'name _id',
-  });
-  return blogs;
+  }), query).search().sort().filter();
+  const result = await blogQuery.modelQuery
+  return result;
 }
 
 const createBlog = async (payload: IBlog) => {
