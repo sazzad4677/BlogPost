@@ -13,4 +13,4 @@ router.post(
 
 router.post('/login', validateData(AuthValidation.loginUserSchema), AuthController.loginUser);
 
-export default router;
+export const AuthRouter = router;

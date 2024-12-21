@@ -1,6 +1,8 @@
 import Router, { IRouter } from 'express';
-import AuthRouter from '../modules/auth/auth.router';
-import UsersRouter from '../modules/users/users.router';
+import { AuthRouter } from '../modules/auth/auth.router';
+import { UsersRouter } from '../modules/users/users.router';
+import { BlogRouter } from '../modules/blog/blog.router';
+import { AdminRouter } from '../modules/admin/admin.router';
 
 const router = Router();
 
@@ -18,6 +20,14 @@ const routes: IRoute[] = [
     path: '/user',
     route: UsersRouter,
   },
+  {
+    path: '/blogs',
+    route: BlogRouter,
+  },
+  {
+    path: "/admin",
+    route: AdminRouter
+  }
 ];
 
 routes.forEach((route) => {

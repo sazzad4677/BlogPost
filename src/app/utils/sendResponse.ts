@@ -4,7 +4,7 @@ interface IResponse<T> {
   success: boolean;
   message: string;
   statusCode: number;
-  data: T;
+  data?: T;
 }
 
 const sendResponse = <T>(res: Response, data: IResponse<T>) => {
@@ -12,7 +12,7 @@ const sendResponse = <T>(res: Response, data: IResponse<T>) => {
     success: true,
     message: data.message,
     statusCode: data?.statusCode,
-    data: data.data,
+    data: data?.data,
   });
 };
 

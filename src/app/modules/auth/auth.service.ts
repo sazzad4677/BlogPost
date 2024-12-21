@@ -35,6 +35,8 @@ const loginUser = async (
   const user = {
     email: existUser.email,
     role: existUser.role,
+    name: existUser.name,
+    _id: existUser._id
   };
   const token = jwt.sign(user, config.token_secret as string, {
     expiresIn: config.token_expires_in,
